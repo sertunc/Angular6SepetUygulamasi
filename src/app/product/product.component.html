@@ -1,0 +1,44 @@
+<!-- <main role="main">
+  <div class="container">
+    <div class="row">
+      <form [formGroup]="productAddForm" (ngsubmit)="add()" class="">
+        <input type="text" id="name" formControlName="name" placeholder="name">
+        <span *ngIf="productAddForm.get('name').hasError('required') && productAddForm.get('name').touched">
+          name zorunlu!
+        </span>
+        <input type="text" id="description" formControlName="description" placeholder="description">
+        <span *ngIf="productAddForm.get('description').hasError('required') && productAddForm.get('description').touched">
+          name zorunlu!
+        </span>
+        <button type="submit" [disabled]="!productAddForm.valid">Ekle</button>
+      </form>
+      <h5>{{ productAddForm.value | json }}</h5>
+      <h5>{{ productAddForm.status | json }}</h5>
+    </div>
+  </div>
+</main> -->
+<h4 class="page-header">
+  Products
+</h4>
+<div *ngIf="filterText">
+  You seacrch for {{filterText}}
+</div>
+<div>
+  <input class="form-control" type="text" placeholder="Product Names..." [(ngModel)]="filterText">
+</div>
+
+<div>
+  <ul class="list-group">
+    <li *ngFor="let item of products | productFilter:filterText" class="list-group-item">
+      <strong>
+        <h5>{{ item.productName }}</h5>
+      </strong>
+      <p>{{ item.quantityPerUnit }}</p>
+      <h6>{{ item.unitPrice }}</h6>
+      <h6>K.D.V {{ item.unitPrice | vatAdded }}</h6>
+      <button type="button" class="btn btn-success btn-sm" (click)="addToCart(item)">
+        add to cart
+      </button>
+    </li>
+  </ul>
+</div>

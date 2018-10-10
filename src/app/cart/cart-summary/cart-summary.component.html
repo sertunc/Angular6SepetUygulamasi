@@ -1,0 +1,14 @@
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+    aria-expanded="false">
+    Your Cart {{totalCartItemPrice | currency}} ({{totalCartItem}} Count)
+  </a>
+  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+    <a *ngFor="let item of cartItems" class="dropdown-item">
+      <button class="btn btn-sm btn-danger" (click)="removeItem(item)">X</button>
+      {{item.product.productName}} ({{item.quantity}})
+    </a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" [routerLink]="['/my-cart']" routerLinkActive="router-link-active">Go to cart</a>
+  </div>
+</li>
